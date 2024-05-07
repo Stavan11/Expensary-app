@@ -1,1 +1,1 @@
-Just checking out git
+Just checking out git. Its really cool!
