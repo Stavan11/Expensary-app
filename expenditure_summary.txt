@@ -1,0 +1,15 @@
+Groceries: 0.00 Rupees
+Bills: 179.00 Rupees
+Entertainment: 0.00 Rupees
+Rent: 16500.00 Rupees
+Credit: 13102.00 Rupees
+Food: 105.00 Rupees
+Salon: 9258.00 Rupees
+EMI: 6299.83 Rupees
+Others: 1280.00 Rupees
+Savings: 32000.00 Rupees
+Giving: 4000.00 Rupees
+Total Income : 84420.00 Rupees
+Total Saving : 32000.00 Rupees
+Total Giving : 4000.00 Rupees
+Total Expenditure : 46723.83 Rupees
