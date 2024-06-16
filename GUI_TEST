@@ -1,0 +1,11 @@
+import pandas as pd
+
+# Example: Reading a CSV file with UTF-8 encoding
+filename = '159562634_1711610573532.csv'
+try:
+    df = pd.read_csv(filename, encoding='utf-8')
+    # Process the dataframe here
+    print(df.head())
+except Exception as e:
+    print(f"Error reading {filename}: {e}")
+    # Handle error appropriately, e.g., log it or display an error message

@@ -184,16 +184,17 @@ def visualize_expenditure_summary(text_file, docx_file):
 # Example usage:
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
+def generate_report (): 
     # Get Excel file path from user input
-    excel_file = input("Enter the path of the Excel file: ")
+    #excel_file = input("Enter the path of the Excel file: ")
 
     # Check if the file exists
-    if not os.path.exists(excel_file):
-        print("File not found.")
-    else:
-        # Load Excel file into a DataFrame
-        df = pd.read_excel(excel_file)
+    # if not os.path.exists(excel_file):
+    #     print("File not found.")
+    # else:
+    #     # Load Excel file into a DataFrame
+    #     df = pd.read_excel(excel_file)
         
         # Print available column names
         # print("Available column names:")
@@ -204,11 +205,11 @@ if __name__ == "__main__":
         # amount_column = input("Enter the name of the column containing amounts: ")
         
         # Categorize expenditure and write to text file
-        categorize_expenditure(excel_file, 'Remarks', 'Amount','Deposit Amt.')
+        # categorize_expenditure(excel_file, 'Remarks', 'Amount','Deposit Amt.')
 
         # Visualize expenditure summary
-        visualize_expenditure_summary('expenditure_summary.txt','expenditure_summary.docx')
+    visualize_expenditure_summary('expenditure_summary.txt','expenditure_summary.docx')
 
-        print("Expenditure summary written to expenditure_summary.docx.")
+    print("Expenditure summary written to expenditure_summary.docx.")
 
-        os.startfile('expenditure_summary.docx')
+    os.startfile('expenditure_summary.docx')
