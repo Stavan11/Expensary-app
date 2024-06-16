@@ -1,0 +1,15 @@
+import pandas as pd
+
+filename = r"D:\Coding and stuff\Python scripts\Expenditure summary\python\159562634_1711610573532.xls"
+
+
+try:
+    if filename.endswith('.xlsx'):
+        df = pd.read_excel(filename, engine='openpyxl')
+    elif filename.endswith('.xls'):
+        df = pd.read_excel(filename, engine='xlrd')
+    else:
+        raise ValueError("Unsupported file format. Please select an Excel file with .xlsx or .xls extension.")
+    print(df.head())
+except Exception as e:
+    print(f"Failed to read the Excel file: {e}")
