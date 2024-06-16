@@ -2,53 +2,58 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import os
 import pandas as pd
-from categorize_expenses import visualize_expenditure_summary
+import categorize_expenses
 
+# Function to browse and load Excel file
 def browse_file():
+    global input_file  # Declare input_file as global
+
     filename = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx;*.xls")])
     if filename:
         try:
             print(f"Selected file: {filename}")  # Debugging statement
 
-            # Check file extension to use appropriate engine
-            if filename.endswith('.xlsx'):
-                df = pd.read_excel(filename, engine='openpyxl')
-            elif filename.endswith('.xls'):
-                df = pd.read_excel(filename, engine='xlrd')
-            else:
-                raise ValueError("Unsupported file format. Please select an Excel file with .xlsx or .xls extension.")
-            
+            # Read the Excel file using pandas
+            input_file = filename
+
             # Display the file path in the entry widget
             entry.delete(0, tk.END)
             entry.insert(0, filename)
-            
-            # Verify the dataframe is read correctly
-            print(df.head())
+
+            # Enable generate button once file is selected
+            generate_button.config(state=tk.NORMAL)
+
         except Exception as e:
-            messagebox.showerror("Error", f"Failed to read the Excel file: {e}")
+            messagebox.showerror("Error", f"Failed to load the file: {e}")
             print(f"Error details: {e}")  # Debugging statement
 
+# Function to generate summary report
 def generate_summary():
-    # Get the input file path
-    input_file = entry.get()
-    
+    global input_file
+
     if not input_file:
         messagebox.showerror("Error", "Please select an Excel file.")
         return
-    
-    # Specify the output file path
-    output_file = os.path.join(os.path.dirname(input_file), "expenditure_summary.docx")
-    
-    try:
-        print(f"Generating summary for file: {input_file}")  # Debugging statement
-        print(f"Output file: {output_file}")  # Debugging statement
 
+    try:
+        # Specify the output file path
+        output_file = os.path.join(os.path.dirname(input_file), "expenditure_summary.docx")
+
+        # Placeholder function for actual report generation
         # Call visualize_expenditure_summary with the input and output file paths
-        visualize_expenditure_summary(input_file, output_file)
-        messagebox.showinfo("Success", f"Expenditure summary generated successfully at {output_file}")
+        categorize_expenses.categorize_expenditure(input_file, 'Remarks', 'Amount','Deposit Amt.')
+
+        categorize_expenses.generate_report()
+
+        # Open the generated report file
+        #os.startfile(output_file)
+
     except Exception as e:
         messagebox.showerror("Error", f"Failed to generate summary: {e}")
         print(f"Error details: {e}")  # Debugging statement
+
+# Initialize global variables
+input_file = None
 
 # Create the main window
 root = tk.Tk()
@@ -59,11 +64,13 @@ label = tk.Label(root, text="Select Excel file:")
 label.grid(row=0, column=0, padx=10, pady=10)
 entry = tk.Entry(root, width=50)
 entry.grid(row=0, column=1, padx=10, pady=10)
+
+# Browse button to select Excel file
 browse_button = tk.Button(root, text="Browse", command=browse_file)
 browse_button.grid(row=0, column=2, padx=10, pady=10)
 
-# Create a button to generate the summary
-generate_button = tk.Button(root, text="Generate Summary", command=generate_summary)
+# Generate button to create summary report
+generate_button = tk.Button(root, text="Generate Summary", command=generate_summary, state=tk.DISABLED)
 generate_button.grid(row=1, column=1, padx=10, pady=10)
 
 # Run the main event loop
