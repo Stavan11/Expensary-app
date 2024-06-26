@@ -57,11 +57,11 @@ input_file = None
 
 # Create the main window
 root = tk.Tk()
-root.title("Expensary App Version 1.0")
+root.title("ExpenSary App Version 1.0")
 root.configure(bg="#f0f0f5")  # Set background color to light blue-gray
 
 # Create a title label with custom font and color
-title_label = tk.Label(root, text="Welcome to Expensary", font=("Arial", 36, "bold"), fg="navy", bg="#f0f0f5")
+title_label = tk.Label(root, text="Welcome to ExpenSary", font=("Arial", 36, "bold"), fg="navy", bg="#f0f0f5")
 title_label.grid(row=0, column=0, columnspan=3, pady=20)  # Centered across columns
 
 # Create a version label at the bottom right with smaller font
