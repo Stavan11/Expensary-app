@@ -39,14 +39,14 @@ def generate_summary():
         # Specify the output file path
         output_file = os.path.join(os.path.dirname(input_file), "expenditure_summary.docx")
 
-        # Placeholder function for actual report generation
-        # Call visualize_expenditure_summary with the input and output file paths
+        # Call functions from categorize_expenses module
         categorize_expenses.categorize_expenditure(input_file, 'Remarks', 'Amount','Deposit Amt.')
-
         categorize_expenses.generate_report()
 
+        messagebox.showinfo("Success", "Summary report generated successfully!")
+
         # Open the generated report file
-        #os.startfile(output_file)
+        # os.startfile(output_file)  # Uncomment if you want to open the report automatically
 
     except Exception as e:
         messagebox.showerror("Error", f"Failed to generate summary: {e}")
@@ -57,21 +57,30 @@ input_file = None
 
 # Create the main window
 root = tk.Tk()
-root.title("Expenditure Summary Generator")
+root.title("Expensary App Version 1.0")
+root.configure(bg="#f0f0f5")  # Set background color to light blue-gray
+
+# Create a title label with custom font and color
+title_label = tk.Label(root, text="Welcome to Expensary", font=("Arial", 36, "bold"), fg="navy", bg="#f0f0f5")
+title_label.grid(row=0, column=0, columnspan=3, pady=20)  # Centered across columns
+
+# Create a version label at the bottom right with smaller font
+version_label = tk.Label(root, text="Version 1.0", font=("Arial", 12), fg="gray", bg="#f0f0f5")
+version_label.grid(row=3, column=2, sticky="se", padx=10, pady=10)
 
 # Create a label and entry for file selection
-label = tk.Label(root, text="Select Excel file:")
-label.grid(row=0, column=0, padx=10, pady=10)
+label = tk.Label(root, text="Select Excel file:", bg="#f0f0f5")
+label.grid(row=1, column=0, padx=10, pady=10)
 entry = tk.Entry(root, width=50)
-entry.grid(row=0, column=1, padx=10, pady=10)
+entry.grid(row=1, column=1, padx=10, pady=10)
 
 # Browse button to select Excel file
 browse_button = tk.Button(root, text="Browse", command=browse_file)
-browse_button.grid(row=0, column=2, padx=10, pady=10)
+browse_button.grid(row=1, column=2, padx=10, pady=10)
 
-# Generate button to create summary report
+# Generate button to create summary report (initially disabled)
 generate_button = tk.Button(root, text="Generate Summary", command=generate_summary, state=tk.DISABLED)
-generate_button.grid(row=1, column=1, padx=10, pady=10)
+generate_button.grid(row=2, column=1, padx=10, pady=10)
 
 # Run the main event loop
 root.mainloop()
