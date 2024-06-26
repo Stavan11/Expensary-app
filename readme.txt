@@ -1,1 +1,2 @@
-Just checking out git. Its really cool! now in working branch.
+
+Run python build.py build for creating the app.
